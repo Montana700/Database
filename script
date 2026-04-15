@@ -1,0 +1,64 @@
+# Functie voor logging
+function Get-Logging {
+    param (
+        [string]$Message,   # Het logbericht
+        [string]$LogFile    # Pad naar het logbestand
+    )
+    # Huidige datum en tijd toevoegen aan het bericht
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    $logEntry = "$timestamp - $Message"
+    
+    # Bericht naar het logbestand schrijven
+    Add-Content -Path $LogFile -Value $logEntry
+}
+
+# Pad naar het logbestand
+$LogFilePath = "$PSScriptRoot\import-log.txt"
+
+# Importeren van de gebruikerslijst
+$users = Import-Csv -Path "$PSScriptRoot\users.csv" -Delimiter ";"
+
+# Teller voor de progressiebalk
+$counter = 0
+
+# Itereren door alle gebruikers
+foreach ($user in $users) {
+    # Weergeven van de progressiebalk
+    Write-Progress -PercentComplete ((100 / $users.Count) * $counter) `
+        -Activity "Importeren van: $($user.Firstname) $($user.Lastname)" `
+        -Status ([math]::Round((100 / $users.Count) * $counter))
+    
+    # Aanmaken van een nieuwe Active Directory gebruiker
+    Try {
+        # Gebruiker aanmaken
+        New-ADUser `
+        -GivenName $user.Firstname `
+        -Surname $user.Lastname `
+        -DisplayName "$($user.Firstname) $($user.Lastname)" `
+        -Name "$($user.Firstname) $($user.Lastname)" `
+        -Enabled $true `
+        -SamAccountName $user.Firstname `
+        -UserPrincipalName "$($user.Firstname)@talland.local" `
+        -AccountPassword (ConvertTo-SecureString "Welkom2023!" -AsPlainText -Force) `
+        
+        
+        # Loggen van succes
+        $successMessage = "Gebruiker $($user.Firstname) $($user.Lastname) succesvol toegevoegd."
+        Write-Host $successMessage -ForegroundColor Green
+        Get-Logging -Message $successMessage -LogFile $LogFilePath
+    } Catch {
+        # Loggen van fouten
+        $errorMessage = "Fout bij het toevoegen van $($user.Firstname) $($user.Lastname): $_"
+        Write-Host $errorMessage -ForegroundColor Red
+        Get-Logging -Message $errorMessage -LogFile $LogFilePath
+    }
+    
+    # Verhogen van de teller
+    $counter++
+    Start-Sleep -Seconds 1
+}
+
+# Eindmelding
+$completionMessage = "Alle gebruikers zijn verwerkt."
+Write-Host $completionMessage -ForegroundColor Cyan
+Get-Logging -Message $completionMessage -LogFile $LogFilePath
