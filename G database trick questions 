@@ -1,0 +1,126 @@
+❓ 1. String vergeten (klassieker)
+Vraag
+Wat is fout?
+SQL
+SELECT * FROM klanten
+WHERE naam = Jan;
+⚠️ Valkuil
+Docent test of je weet dat tekst in quotes moet
+✔️ Antwoord
+SQL
+WHERE naam = 'Jan';
+
+
+❓ 2. JOIN zonder ON
+Vraag
+Wat mist hier?
+SQL
+SELECT klanten.naam, bestellingen.product
+FROM klanten
+JOIN bestellingen;
+⚠️ Valkuil
+JOIN is onvolledig zonder koppeling
+✔️ Antwoord
+SQL
+ON klanten.klant_id = bestellingen.klant_id
+
+
+❓ 3. = vs vergelijken (SQL val)
+Vraag
+Wat is fout?
+SQL
+SELECT * FROM klanten
+WHERE leeftijd = > 18;
+✔️ Antwoord
+SQL
+WHERE leeftijd > 18;
+
+
+❓ 4. Verkeerde kolomnaam
+Vraag
+Wat is fout?
+SQL
+SELECT naam, prijs
+FROM klanten;
+⚠️ Valkuil
+prijs bestaat niet in klanten
+✔️ Antwoord
+prijs hoort in producten tabel
+
+
+❓ 5. DELETE valkuil
+Vraag
+Wat doet dit?
+SQL
+DELETE FROM klanten;
+✔️ Antwoord
+👉 Verwijdert ALLE klanten
+⚠️ Trick: zonder WHERE = alles weg
+
+
+❓ 6. UPDATE fout (gevaarlijk!)
+Vraag
+Wat is fout?
+SQL
+UPDATE klanten
+SET naam = 'Jan';
+✔️ Antwoord
+👉 Geen WHERE → alle klanten worden Jan
+
+
+❓ 7. GROUP BY zonder begrip
+Vraag
+Wat doet dit?
+SQL
+SELECT opleiding_id, COUNT(*)
+FROM studenten
+GROUP BY opleiding_id;
+✔️ Antwoord
+👉 telt studenten per opleiding
+
+
+❓ 8. Foreign key check
+Vraag
+Waarom gebruik je een foreign key?
+✔️ Antwoord
+👉 om tabellen te koppelen + data correct te houden
+
+
+❓ 9. Dubbele data fout (normalisatie)
+Vraag
+Wat is fout?
+student
+opleiding
+Jan
+ICT
+Piet
+ICT
+✔️ Antwoord
+👉 opleiding wordt herhaald → niet goed genormaliseerd
+
+
+❓ 10. SELECT *
+Vraag
+Waarom is dit soms slecht?
+SQL
+SELECT * FROM studenten;
+✔️ Antwoord
+👉 haalt alles op → traag / onoverzichtelijk
+
+
+❓ 11. INNER JOIN val
+Vraag
+Wat gebeurt hier?
+SQL
+SELECT * FROM klanten
+JOIN bestellingen
+ON klanten.klant_id = bestellingen.klant_id;
+✔️ Antwoord
+👉 alleen klanten MET bestellingen
+
+
+❓ 12. LEFT JOIN verschil
+Vraag
+Wat doet LEFT JOIN?
+✔️ Antwoord
+👉 toont ALLE klanten, ook zonder bestelling
