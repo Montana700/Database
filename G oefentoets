@@ -1,0 +1,138 @@
+🏗️ Opdracht 1: Tabellen maken
+📝 Opdracht
+Maak de volgende tabellen:
+Klanten (id, naam, email)
+Producten (id, naam, prijs)
+Bestellingen (id, klant_id, product_id, aantal)
+✅ Antwoord
+SQL
+CREATE TABLE klanten (
+  klant_id INT AUTO_INCREMENT PRIMARY KEY,
+  naam VARCHAR(100),
+  email VARCHAR(100)
+);
+
+CREATE TABLE producten (
+  product_id INT AUTO_INCREMENT PRIMARY KEY,
+  naam VARCHAR(100),
+  prijs DECIMAL(10,2)
+);
+
+CREATE TABLE bestellingen (
+  bestelling_id INT AUTO_INCREMENT PRIMARY KEY,
+  klant_id INT,
+  product_id INT,
+  aantal INT
+);
+
+
+🔗 Opdracht 2: Relaties leggen
+📝 Opdracht
+Zorg dat:
+klant_id verwijst naar klanten
+product_id verwijst naar producten
+✅ Antwoord
+SQL
+ALTER TABLE bestellingen
+ADD FOREIGN KEY (klant_id) REFERENCES klanten(klant_id),
+ADD FOREIGN KEY (product_id) REFERENCES producten(product_id);
+
+
+✏️ Opdracht 3: Data toevoegen
+📝 Opdracht
+Voeg toe:
+Klant: Jan, jan@email.nl
+Product: Laptop, 999.99
+Bestelling: Jan koopt 1 laptop
+✅ Antwoord
+SQL
+INSERT INTO klanten (naam, email)
+VALUES ('Jan', 'jan@email.nl');
+
+INSERT INTO producten (naam, prijs)
+VALUES ('Laptop', 999.99);
+
+INSERT INTO bestellingen (klant_id, product_id, aantal)
+VALUES (1, 1, 1);
+
+
+💻 Opdracht 4: JOIN query
+📝 Opdracht
+Laat zien:
+klantnaam
+productnaam
+aantal
+✅ Antwoord
+SQL
+SELECT klanten.naam, producten.naam, bestellingen.aantal
+FROM bestellingen
+JOIN klanten ON bestellingen.klant_id = klanten.klant_id
+JOIN producten ON bestellingen.product_id = producten.product_id;
+
+
+🔍 Opdracht 5: WHERE
+📝 Opdracht
+Laat alleen producten zien duurder dan 500
+✅ Antwoord
+SQL
+SELECT * 
+FROM producten
+WHERE prijs > 500;
+
+
+📊 Opdracht 6: GROUP BY
+📝 Opdracht
+Tel hoeveel bestellingen per klant
+✅ Antwoord
+SQL
+SELECT klant_id, COUNT(*) AS aantal_bestellingen
+FROM bestellingen
+GROUP BY klant_id;
+
+
+🔄 Opdracht 7: UPDATE
+📝 Opdracht
+Verander prijs van Laptop naar 899.99
+✅ Antwoord
+SQL
+UPDATE producten
+SET prijs = 899.99
+WHERE naam = 'Laptop';
+
+
+❌ Opdracht 8: DELETE
+📝 Opdracht
+Verwijder klant Jan
+✅ Antwoord
+SQL
+DELETE FROM klanten
+WHERE naam = 'Jan';
+
+
+🧠 Opdracht 9: Normalisatie (denk vraag)
+📝 Opdracht
+Wat is fout aan deze tabel?
+klant
+product
+prijs
+Jan
+Laptop
+999
+✅ Antwoord
+Data staat dubbel → niet genormaliseerd
+Product + prijs horen in aparte tabel
+👉 Oplossing:
+klanten tabel
+producten tabel
+bestellingen tabel
+
+
+🔥 Bonus (komt vaak!)
+📝 Opdracht
+Laat alle klanten zien, ook als ze niks besteld hebben
+✅ Antwoord
+SQL
+SELECT klanten.naam, bestellingen.bestelling_id
+FROM klanten
+LEFT JOIN bestellingen
+ON klanten.klant_id = bestellingen.klant_id;
