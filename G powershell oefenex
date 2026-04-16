@@ -1,0 +1,120 @@
+🧪 DEEL 1 – Code lezen
+❓ Vraag 1
+PowerShell
+Get-Process | Where-Object {$_.CPU -gt 50}
+✔️ Antwoord:
+Toont alle processen met CPU gebruik hoger dan 50
+
+
+❓ Vraag 2
+PowerShell
+Get-Service | Where-Object {$_.Status -eq "Running"}
+✔️ Antwoord:
+Toont alle services die actief (Running) zijn
+
+
+❓ Vraag 3
+PowerShell
+Get-ChildItem | Select-Object Name, Length
+✔️ Antwoord:
+Toont bestanden met alleen:
+naam
+grootte
+✏️ DEEL 2 – Code schrijven
+
+
+❓ Vraag 4
+Alle bestanden tonen
+✔️ Antwoord:
+PowerShell
+Get-ChildItem
+
+
+❓ Vraag 5
+CPU > 100 tonen
+✔️ Antwoord:
+PowerShell
+Get-Process | Where-Object {$_.CPU -gt 100}
+
+
+❓ Vraag 6
+Variabele maken en tonen
+✔️ Antwoord:
+PowerShell
+$naam = "JouwNaam"
+Write-Output $naam
+
+
+❓ Vraag 7
+If statement
+✔️ Antwoord:
+PowerShell
+if ($getal -gt 10) {
+    Write-Output "Groter dan 10"
+}
+🔧 DEEL 3 – Code aanvullen
+
+
+❓ Vraag 8
+PowerShell
+Get-Process | Where-Object { $_.CPU - ____ 100 }
+✔️ Antwoord:
+PowerShell
+gt
+
+
+❓ Vraag 9
+PowerShell
+if ($leeftijd ____ 18) {
+    Write-Output "Volwassen"
+}
+✔️ Antwoord:
+PowerShell
+-gt
+
+
+❌ DEEL 4 – Fouten herkennen
+❓ Vraag 10
+PowerShell
+Get-Process | Where-Object {$CPU -gt 100}
+✔️ Antwoord:
+Fout: $CPU bestaat niet
+👉 Moet zijn: $_
+
+
+❓ Vraag 11
+PowerShell
+Get-Service | Where-Object {$_.Status = "Running"}
+✔️ Antwoord:
+Fout: =
+👉 Moet zijn: -eq (vergelijking)
+🧠 DEEL 5 – Begrip
+
+
+❓ Vraag 12
+Wat doet |?
+✔️ Antwoord:
+Stuurt output door naar het volgende commando (pipeline)
+
+
+❓ Vraag 13
+Wat betekent $_?
+✔️ Antwoord:
+Het huidige object in de pipeline
+
+
+❓ Vraag 14
+Verschil = en -eq?
+✔️ Antwoord:
+= → waarde toekennen
+-eq → vergelijken
+
+
+🏁 BONUS
+❓ Vraag 15
+Alle bestanden > 1MB + alleen naam en grootte
+✔️ Antwoord:
+PowerShell
+Get-ChildItem |
+Where-Object {$_.Length -gt 1MB} |
+Select-Object Name, Length
