@@ -1,0 +1,100 @@
+🧠💾 DATABASE SAMENVATTING (EXAMEN)
+🏗️ 1. Tabellen maken (DDL)
+SQL
+CREATE TABLE studenten (
+  student_id INT AUTO_INCREMENT PRIMARY KEY,
+  naam VARCHAR(100),
+  leeftijd INT
+);
+🔑 Belangrijk:
+INT = getal
+VARCHAR = tekst
+PRIMARY KEY = unieke id
+AUTO_INCREMENT = automatisch nummer
+
+
+🔗 2. Relaties (FOREIGN KEY)
+SQL
+ALTER TABLE studenten
+ADD opleiding_id INT,
+ADD FOREIGN KEY (opleiding_id) REFERENCES opleidingen(opleiding_id);
+🔑 Belangrijk:
+koppelt tabellen aan elkaar
+zorgt voor data-integriteit
+
+
+✏️ 3. Data invoeren (INSERT)
+SQL
+INSERT INTO studenten (naam, leeftijd)
+VALUES ('Jan', 20);
+
+
+🔍 4. Data ophalen (SELECT)
+SQL
+SELECT * FROM studenten;
+
+
+🎯 5. Filteren (WHERE)
+SQL
+SELECT * 
+FROM studenten
+WHERE leeftijd > 18;
+
+
+🔗 6. JOIN (SUPER BELANGRIJK)
+SQL
+SELECT studenten.naam, opleidingen.naam
+FROM studenten
+JOIN opleidingen
+ON studenten.opleiding_id = opleidingen.opleiding_id;
+🔥 Wat het doet:
+combineert tabellen
+
+
+📊 7. Groeperen (GROUP BY)
+SQL
+SELECT opleiding_id, COUNT(*) 
+FROM studenten
+GROUP BY opleiding_id;
+
+
+✏️ 8. Wijzigen (UPDATE)
+SQL
+UPDATE studenten
+SET leeftijd = 21
+WHERE naam = 'Jan';
+
+
+❌ 9. Verwijderen (DELETE)
+SQL
+DELETE FROM studenten
+WHERE naam = 'Jan';
+
+
+🧠 10. Belangrijkste begrippen
+🔑 Keys:
+Primary key → unieke rij
+Foreign key → koppeling
+
+
+🔁 Normalisatie:
+1NF → geen lijstjes in cellen
+2NF → geen gedeeltelijke afhankelijkheid
+3NF → geen indirecte afhankelijkheid
+
+
+⚠️ 11. EXAMEN VALKUILEN
+❌ JOIN zonder ON → fout resultaat
+❌ = gebruiken i.p.v. -eq (bij SQL: = is OK, maar in logica verwarring)
+❌ vergeten WHERE bij UPDATE/DELETE
+❌ verkeerde foreign key
+
+
+🔥 ULTRA BELANGRIJK (TOP 5)
+Dit moet je altijd kunnen:
+SQL
+SELECT
+INSERT
+UPDATE
+DELETE
+JOIN
