@@ -1,0 +1,99 @@
+🧾 1. BASIS COMMANDO’S
+PowerShell
+Get-Process
+Get-Service
+Get-ChildItem
+Set-Location
+👉 Betekenis:
+Process = programma’s
+Service = Windows diensten
+ChildItem = bestanden/mappen (ls)
+
+
+🔍 2. FILTEREN (MEEST BELANGRIJK)
+PowerShell
+Get-Process | Where-Object {$_.CPU -gt 100}
+👉 Belangrijk:
+| = pipeline (doorsturen)
+Where-Object = filter
+$_ = huidig object
+
+
+📊 3. SELECTEREN
+PowerShell
+Get-Process | Select-Object Name, CPU
+👉 Alleen bepaalde kolommen tonen
+
+
+🔁 4. IF STATEMENT
+PowerShell
+if ($leeftijd -gt 18) {
+    Write-Output "Volwassen"
+}
+👉 Belangrijk:
+altijd haakjes ()
+blok {}
+
+
+🔢 5. VERGELIJKINGEN (SUPER BELANGRIJK)
+Operator
+Betekenis
+-eq
+gelijk
+-gt
+groter dan
+-lt
+kleiner dan
+-ge
+groter/gelijk
+-le
+kleiner/gelijk
+
+
+🧠 6. $_ (BELANGRIJK CONCEPT)
+PowerShell
+$_
+👉 betekent:
+het huidige item in de pipeline
+
+
+✏️ 7. VARIABELEN
+PowerShell
+$naam = "Jan"
+Write-Output $naam
+
+
+🔧 8. SERVICE FILTER
+PowerShell
+Get-Service | Where-Object {$_.Status -eq "Running"}
+👉 alleen actieve services
+
+
+📁 9. BESTANDEN FILTEREN
+PowerShell
+Get-ChildItem | Where-Object {$_.Length -gt 1MB}
+
+
+❌ 10. TRICK FOUTEN (EXAMENVALKUILEN)
+❌ $CPU i.p.v. $_
+❌ = i.p.v. -eq
+❌ haakjes vergeten bij if
+❌ pipeline vergeten |
+❌ verkeerde property naam
+
+
+🔥 11. MINI TEMPLATE (MEEST GEBRUIKT)
+PowerShell
+Get-Process |
+Where-Object {$_.CPU -gt 100} |
+Select-Object Name, CPU
+👉 Dit is letterlijk een examenklassieker
+
+
+🎯 12. EXAMEN STRATEGIE
+Als je een opdracht krijgt:
+Lees wat je moet filteren
+Kies cmdlet (Get-Process / Get-Service)
+Voeg Where-Object toe
+Gebruik $_ correct
+Check operator (-gt, -eq)
