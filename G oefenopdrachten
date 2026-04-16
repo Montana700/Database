@@ -1,0 +1,104 @@
+🏗️ 1. Database + tabellen maken
+📝 Opdracht (zoals op toets)
+Maak een database voor een school met:
+Studenten (id, naam, leeftijd)
+Opleidingen (id, naam)
+✅ Wat jij doet in phpMyAdmin
+Studenten tabel:
+SQL
+CREATE TABLE studenten (
+  student_id INT AUTO_INCREMENT PRIMARY KEY,
+  naam VARCHAR(100),
+  leeftijd INT
+);
+Opleidingen tabel:
+SQL
+CREATE TABLE opleidingen (
+  opleiding_id INT AUTO_INCREMENT PRIMARY KEY,
+  naam VARCHAR(100)
+);
+
+
+🔗 2. Relaties leggen
+📝 Opdracht
+Koppel studenten aan een opleiding
+✅ Wat jij doet
+Je voegt een foreign key toe:
+SQL
+ALTER TABLE studenten
+ADD opleiding_id INT,
+ADD FOREIGN KEY (opleiding_id) REFERENCES opleidingen(opleiding_id);
+👉 Of via phpMyAdmin klik je dit bij “Relatie weergave”
+
+
+💻 3. SELECT + JOIN (komt bijna altijd!)
+📝 Opdracht
+Laat alle studenten zien met hun opleiding naam
+✅ Query
+SQL
+SELECT studenten.naam, opleidingen.naam
+FROM studenten
+JOIN opleidingen
+ON studenten.opleiding_id = opleidingen.opleiding_id;
+
+
+🔍 4. WHERE gebruiken
+📝 Opdracht
+Toon alleen studenten ouder dan 18
+✅ Query
+SQL
+SELECT * 
+FROM studenten
+WHERE leeftijd > 18;
+
+
+📊 5. GROUP BY
+📝 Opdracht
+Tel hoeveel studenten per opleiding
+✅ Query
+SQL
+SELECT opleiding_id, COUNT(*) AS aantal
+FROM studenten
+GROUP BY opleiding_id;
+
+
+✏️ 6. INSERT (data toevoegen)
+📝 Opdracht
+Voeg een student toe
+✅ Query
+SQL
+INSERT INTO studenten (naam, leeftijd, opleiding_id)
+VALUES ('Jan', 20, 1);
+
+
+🔄 7. UPDATE
+📝 Opdracht
+Verander de leeftijd van Jan naar 21
+✅ Query
+SQL
+UPDATE studenten
+SET leeftijd = 21
+WHERE naam = 'Jan';
+❌ 8. DELETE
+📝 Opdracht
+Verwijder student Jan
+✅ Query
+SQL
+DELETE FROM studenten
+WHERE naam = 'Jan';
+
+
+🧠 9. Normalisatie (komt vaak als denk-opdracht)
+📝 Opdracht
+Wat is hier fout?
+student
+opleiding_naam
+Jan
+ICT
+✅ Antwoord
+Niet genormaliseerd
+Opleiding moet in aparte tabel
+👉 Jij moet zeggen:
+1 tabel → studenten
+1 tabel → opleidingen
+foreign key
