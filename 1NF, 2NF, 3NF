@@ -1,0 +1,54 @@
+🧩 Normalisatie (1NF, 2NF, 3NF)
+🥇 1NF (First Normal Form)
+👉 Geen herhalende groepen / alles atomair
+Regels:
+Elke cel = 1 waarde (geen lijstjes)
+Elke rij is uniek (primary key)
+❌ Fout:
+klant_id
+naam
+telefoons
+1
+Jan
+06123, 06456
+✅ Goed:
+klant_id
+naam
+telefoon
+1
+Jan
+06123
+1
+Jan
+06456
+👉 Of nog beter: aparte tabel voor telefoons
+🥈 2NF (Second Normal Form)
+👉 Alles hangt volledig af van de primary key
+Alleen relevant als je een samengestelde key hebt.
+Probleem: Een kolom hangt maar van een deel van de key af.
+❌ Fout:
+student_id
+vak_id
+student_naam
+👉 student_naam hangt alleen af van student_id, niet van de hele key
+✅ Oplossing: Splitsen:
+Studenten: | student_id | naam |
+Inschrijvingen: | student_id | vak_id |
+🥉 3NF (Third Normal Form)
+👉 Geen afhankelijkheid tussen niet-sleutelkolommen
+Of simpel:
+Kolommen mogen niet afhankelijk zijn van andere kolommen (behalve de key)
+❌ Fout: | student_id | opleiding_id | opleiding_naam |
+👉 opleiding_naam hangt af van opleiding_id, niet direct van student_id
+✅ Oplossing: Splitsen:
+Student: | student_id | opleiding_id |
+Opleiding: | opleiding_id | naam |
+🔥 Super kort ezelsbruggetje
+1NF → geen lijstjes
+2NF → geen halve afhankelijkheid
+3NF → geen indirecte afhankelijkheid
+🎯 Hoe herken je het op je examen?
+Stel jezelf 3 vragen:
+Staat er ergens een lijst in een cel? → 1NF fout
+Hangt iets maar van een deel van de key af? → 2NF fout
+Hangt een kolom van een andere kolom af? → 3NF fout
