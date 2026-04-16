@@ -1,0 +1,100 @@
+🏗️ 1. TABELLEN MAKEN (CREATE)
+SQL
+CREATE TABLE tabelnaam (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  kolom1 VARCHAR(100),
+  kolom2 INT
+);
+👉 Belangrijk:
+PRIMARY KEY = uniek
+AUTO_INCREMENT = automatisch nummer
+VARCHAR = tekst
+INT = getal
+
+
+✏️ 2. DATA TOEVOEGEN (INSERT)
+SQL
+INSERT INTO tabelnaam (kolom1, kolom2)
+VALUES ('waarde', 10);
+
+
+🔍 3. DATA OPHALEN (SELECT)
+SQL
+SELECT * FROM tabelnaam;
+Specifiek:
+SQL
+SELECT naam FROM klanten;
+
+
+🎯 4. FILTEREN (WHERE)
+SQL
+SELECT * 
+FROM tabelnaam
+WHERE kolom = 'waarde';
+👉 Belangrijk:
+tekst altijd 'quotes'
+
+
+🔗 5. JOIN (MEEST BELANGRIJK)
+SQL
+SELECT a.kolom, b.kolom
+FROM tabelA a
+JOIN tabelB b
+ON a.id = b.id;
+👉 Begrijp:
+INNER JOIN = alleen matches
+LEFT JOIN = alles links + matches
+
+
+📊 6. GROEPEREN (GROUP BY)
+SQL
+SELECT kolom, COUNT(*)
+FROM tabel
+GROUP BY kolom;
+👉 Telt groepen
+
+
+✏️ 7. UPDATEN
+SQL
+UPDATE tabel
+SET kolom = 'waarde'
+WHERE id = 1;
+⚠️ Zonder WHERE = alles aangepast
+
+
+❌ 8. VERWIJDEREN
+SQL
+DELETE FROM tabel
+WHERE id = 1;
+⚠️ Zonder WHERE = alles weg
+
+
+🧠 9. BELANGRIJKE REGELS
+🔑 Keys
+Primary key = unieke rij
+Foreign key = koppeling tussen tabellen
+SQL
+FOREIGN KEY (klant_id) REFERENCES klanten(klant_id)
+⚠️ TRICK VALKUILEN
+❌ vergeten 'quotes'
+❌ JOIN zonder ON
+❌ UPDATE/DELETE zonder WHERE
+❌ verkeerde kolomnaam
+
+
+🔥 10. JOIN TYPES
+INNER JOIN
+👉 alleen matches
+LEFT JOIN
+👉 alles links + matches
+
+
+🧠 11. NORMALISATIE (kort)
+1NF → geen lijstjes
+2NF → geen gedeeltelijke afhankelijkheid
+3NF → geen indirecte afhankelijkheid
+💣 ULTRA EXAM TIP
+👉 Als je twijfelt:
+eerst SELECT *
+dan WHERE
+dan JOIN
