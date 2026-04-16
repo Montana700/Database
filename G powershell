@@ -1,0 +1,83 @@
+🧠 1. Basis commando’s (cmdlets)
+Je moet deze kennen en gebruiken:
+Get-Process → processen bekijken
+Get-Service → services
+Get-ChildItem → bestanden (zoals ls)
+Set-Location → map veranderen
+👉 Je hoeft ze niet allemaal uit je hoofd, maar je moet ze kunnen herkennen en gebruiken
+
+
+🔍 2. Pijplijnen (SUPER belangrijk)
+PowerShell draait om de pipeline (|)
+Bijvoorbeeld:
+PowerShell
+Get-Process | Where-Object {$_.CPU -gt 100}
+👉 Betekent:
+pak processen
+filter op CPU > 100
+
+
+🔎 3. Filters gebruiken
+Where-Object
+Select-Object
+Voorbeeld:
+PowerShell
+Get-Service | Where-Object {$_.Status -eq "Running"}
+
+
+🔁 4. Loops
+Vaak komt dit:
+PowerShell
+foreach ($user in $users) {
+    Write-Output $user
+}
+👉 Je moet snappen wat dit doet
+
+
+🔀 5. If-statements
+PowerShell
+if ($x -gt 10) {
+    Write-Output "Groter dan 10"
+}
+👉 Basis logica = belangrijk
+
+
+📁 6. Bestanden en mappen
+Bijvoorbeeld:
+bestanden ophalen
+bestanden kopiëren
+bestanden verwijderen
+PowerShell
+Copy-Item bestand.txt -Destination backup\
+
+
+🧾 7. Variabelen
+PowerShell
+$naam = "Jan"
+👉 Wordt vaak gecombineerd met loops of if
+
+
+⚙️ 8. Scripts lezen (komt vaak!)
+Je krijgt code en moet zeggen:
+wat doet dit?
+wat is de output?
+👉 Dit is echt typisch examenvraag
+⚠️ Wat vaak op toetsen komt
+
+
+🔥 1. Fouten vinden
+Bijvoorbeeld:
+verkeerde $_
+verkeerde operator (-eq, -gt)
+
+
+🔥 2. Kleine scripts schrijven
+Bijv:
+“Laat alle bestanden groter dan 1MB zien”
+PowerShell
+Get-ChildItem | Where-Object {$_.Length -gt 1MB}
+
+
+🔥 3. Output aanpassen
+PowerShell
+Get-Process | Select-Object Name, CPU
