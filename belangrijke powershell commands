@@ -1,0 +1,50 @@
+🎯 SAMENVATTING – ALLEEN BELANGRIJKSTE COMMANDS
+💻 Basis commands
+PowerShell
+Get-Process
+Get-Service
+Get-ChildItem
+Set-Location
+
+
+🔍 Filteren (BELANGRIJKSTE!)
+PowerShell
+Where-Object {$_.Property -gt value}
+
+
+📊 Selecteren
+PowerShell
+Select-Object Name, CPU
+
+
+🔁 If statement
+PowerShell
+if ($waarde -gt 10) {
+    Write-Output "Ja"
+}
+
+
+🔢 Vergelijk operators (SUPER BELANGRIJK)
+-eq = gelijk
+-gt = groter dan
+-lt = kleiner dan
+
+
+🔗 Pipeline
+PowerShell
+|
+👉 stuurt output door
+
+
+🧠 $_ betekenis
+PowerShell
+$_
+👉 “het huidige object”
+
+
+🔥 ULTRA BELANGRIJK (EXAMEN TRUC)
+Docenten testen vooral:
+= vs -eq
+$_.Property vergeten
+pipeline begrijpen
+haakjes in if
