@@ -1,0 +1,82 @@
+🧠💻 DOCENT TRUCVRAGEN POWERSHELL (EXAMEN NIVEAU)
+❓ Vraag 1 – “lijkt goed, maar is fout”
+PowerShell
+Get-Process | Where-Object {$_.CPU = 100}
+✔️ Wat is fout?
+👉 $_.CPU = 100 is fout
+✔️ Antwoord:
+= is toekennen
+je moet hebben: -eq of -gt
+PowerShell
+Get-Process | Where-Object {$_.CPU -eq 100}
+
+
+❓ Vraag 2 – valkuil $_
+PowerShell
+Get-Service | Where-Object {$Status -eq "Running"}
+✔️ Wat is fout?
+👉 $Status bestaat niet
+✔️ Antwoord:
+PowerShell
+Get-Service | Where-Object {$_.Status -eq "Running"}
+
+
+❓ Vraag 3 – pipeline misverstand
+PowerShell
+Get-ChildItem | Get-Process
+✔️ Wat is fout?
+👉 Je kunt bestanden niet doorgeven aan processen
+✔️ Antwoord:
+Pipeline werkt alleen met compatibele objecten
+
+
+❓ Vraag 4 – “lijkt logisch maar werkt niet”
+PowerShell
+Get-Process | Where-Object {$_.Memory -gt 1MB}
+✔️ Wat is tricky?
+👉 Memory bestaat niet altijd als Memory
+✔️ Antwoord:
+Soms moet je gebruiken:
+PowerShell
+Get-Process | Where-Object {$_.WorkingSet -gt 1MB}
+
+
+❓ Vraag 5 – vergeten haakjes
+PowerShell
+if $leeftijd -gt 18 {
+    Write-Output "ok"
+}
+✔️ Fout:
+👉 Haakjes ontbreken
+✔️ Antwoord:
+PowerShell
+if ($leeftijd -gt 18) {
+    Write-Output "ok"
+}
+
+
+❓ Vraag 6 – “output lijkt leeg”
+PowerShell
+Get-Process | Where-Object {$_.CPU -gt 999999}
+✔️ Antwoord:
+Script is goed
+maar resultaat kan leeg zijn
+👉 Docent test of je dat snapt
+
+
+❓ Vraag 7 – SELECT val
+PowerShell
+Get-Process | Select Name CPU
+✔️ Fout:
+👉 komma vergeten
+✔️ Antwoord:
+PowerShell
+Get-Process | Select-Object Name, CPU
+
+
+❓ Vraag 8 – “mag dit wel?”
+PowerShell
+$naam = Get-Process
+Write-Output $naam.Name
+✔️ Trick:
+👉 werkt niet zoals je denkt (meerdere objecten)
