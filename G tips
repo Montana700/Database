@@ -1,0 +1,40 @@
+🔑 1. Datatypes goed kiezen
+Je moet soms zelf kiezen:
+INT → getallen
+VARCHAR(100) → tekst
+DECIMAL(10,2) → prijzen
+👉 Fout datatype = puntenaftrek
+
+
+🔐 2. Constraints (kleine maar belangrijke dingen)
+Bijvoorbeeld:
+SQL
+email VARCHAR(100) NOT NULL UNIQUE
+Je moet weten:
+NOT NULL
+UNIQUE
+AUTO_INCREMENT
+
+
+🔄 3. Verschil tussen JOINs
+Je kent waarschijnlijk:
+INNER JOIN → alleen matches
+LEFT JOIN → alles links + matches
+👉 Dit wordt vaak gevraagd als:
+“Laat ook klanten zien zonder bestelling”
+
+
+🧠 4. Begripsvragen (theorie!)
+Bijvoorbeeld:
+Wat is een primary key?
+Waarom gebruik je een foreign key?
+Wat is het nut van normaliseren?
+👉 Dit is vaak makkelijke punten die mensen vergeten
+
+
+⚠️ 5. Fouten herkennen
+Bijvoorbeeld:
+verkeerde JOIN → dubbele rijen
+verkeerde relatie
+data die niet klopt
+👉 Soms moet je zeggen wat er fout is
